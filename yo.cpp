@@ -77,7 +77,7 @@ static float fabs(float n)
 
 static float sin(float rad)
 {
-  app = (rad-(rad*rad*rad/6)+(rad*rad*rad*rad*rad/120)-(rad*rad*rad*rad*rad*rad*rad/5040)+(rad*rad*rad*rad*rad*rad*rad*rad*rad/362880));
+  float app = (rad-(rad*rad*rad/6)+(rad*rad*rad*rad*rad/120)-(rad*rad*rad*rad*rad*rad*rad/5040)+(rad*rad*rad*rad*rad*rad*rad*rad*rad/362880));
   return(app);
 }
 
