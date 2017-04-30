@@ -51,8 +51,6 @@
 #include <stdint.h>
 
 
-#include "sds_lib.h"
-
 using namespace std;
 
 //#define DEBUG
@@ -64,16 +62,6 @@ using namespace std;
 float* fft1(int n, int flag);
 int reverse(int n, int flag);
 
-class perf_counter
-{
-public:
-     uint64_t tot, cnt, calls;
-     perf_counter() : tot(0), cnt(0), calls(0) {};
-     inline void reset() { tot = cnt = calls = 0; }
-     inline void start() { cnt = sds_clock_counter(); calls++; };
-     inline void stop() { tot += (sds_clock_counter() - cnt); };
-     inline uint64_t avg_cpu_cycles() { return ((tot+(calls>>1)) / calls); };
-};
 
 float ar[NUM];
 float ai[NUM] = {0.,  };
@@ -102,9 +90,7 @@ static float cos(float rad)
 
 int main()
 {
-	perf_counter ctr;
 
-	ctr.start();
 
 	int  i, n = NUM, flag, chkerr;
 
@@ -172,9 +158,6 @@ int main()
 
 	}
 
-	ctr.stop();
-	uint64_t cycles = ctr.avg_cpu_cycles();
-    cout <<"cycles = "<<(cycles/1000)<<endl;
 	return 0;
 
 }
